@@ -2,6 +2,14 @@ import { getLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
+  if (cartItems) {
+    let totalCart = total(cartItems);
+    document.querySelector("#total").className = "cart-footershow";
+    document.querySelector("#totalPrice").innerHTML = `Total: ${totalCart}`;
+  } else {
+    document.querySelector("#total").className = "cart-footerhide";
+  }
+
   const htmlItems = cartItems?.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems?.join("");
 }
@@ -23,6 +31,15 @@ function cartItemTemplate(item) {
 </li>`;
 
   return newItem;
+}
+function total(item) {
+  let totalValue = 0;
+
+  let numberOfItems = item.length;
+  for (let i = 0; i < numberOfItems; i++) {
+    totalValue = totalValue + item[i].FinalPrice * item[i].Qty;
+  }
+  return totalValue;
 }
 
 renderCartContents();
