@@ -10,8 +10,9 @@ import * as productDetails from "./productDetails.mjs";
 // add to cart button event handler
 
 async function addToCartHandler(e) {
-  const product = await findProductById(e.target.dataset.id);
-
+  const productId = getParam('product');
+  const product = await findProductById(productId);
+  
   productDetails.addProductToCart(product);
 }
 
