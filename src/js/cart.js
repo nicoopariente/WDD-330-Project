@@ -11,7 +11,9 @@ function renderCartContents() {
   }
 
   const htmlItems = cartItems?.map((item) => cartItemTemplate(item));
-  document.querySelector(".product-list").innerHTML = htmlItems?.length ? htmlItems?.join("") :   `<p>Your cart looks empty!</p>`;
+  document.querySelector(".product-list").innerHTML = htmlItems?.length
+    ? htmlItems?.join("")
+    : `<p>Your cart looks empty!</p>`;
 }
 
 function cartItemTemplate(item) {
