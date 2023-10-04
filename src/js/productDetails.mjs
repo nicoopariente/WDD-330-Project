@@ -8,8 +8,13 @@ export async function productDetails(productId, selector) {
   // use findProductById to get the details for the current product. findProductById will return a promise! use await or .then() to process it
   let productDetails = await findProductById(productId)
   // once we have the product details we can render out the HTML
-  renderProductDetails(productDetails)
-  // add a listener to Add to Cart button
+  if (productDetails){
+    renderProductDetails(productDetails);
+    // add a listener to Add to Cart button
+  }else{
+   wrongProductIdMessage();
+  }
+
 
 }
 
@@ -35,5 +40,14 @@ export function renderProductDetails(productDetails) {
   document.querySelector("#productFinalPrice").innerHTML = productDetails.FinalPrice;
   document.querySelector("#productColorName").innerHTML = productDetails.Colors[0].ColorName;
   document.querySelector("#productDescriptionHtmlSimple").innerHTML = productDetails.DescriptionHtmlSimple;
+
+}
+
+export function wrongProductIdMessage(){
+  let h3 = document.createElement("h3");
+    h3.innerHTML = "Ups! Its seems that the Product is not correct. Pleas check the Id.";
+    let parentElement = document.querySelector(".product-detail");
+    parentElement.innerHTML = "";
+    parentElement.append(h3);
 
 }
