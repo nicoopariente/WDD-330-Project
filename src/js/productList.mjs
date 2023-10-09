@@ -10,6 +10,7 @@ function productCardTemplate(product) {
     />
     <h3 class="card__brand">${product.Brand.Name}</h3>
     <h2 class="card__name">${product.NameWithoutBrand}</h2>
+    <p class="product-card__discount">$${(product.SuggestedRetailPrice - product.FinalPrice).toFixed(2)} OFF</p></a>
     <p class="product-card__price">$${product.FinalPrice}</p></a>
   </li>`
 }   
@@ -27,7 +28,6 @@ export async function productList(selector){
     let element = document.querySelector(selector);
     let products = await getData();
     products = products.filter((product) => product.Id != "880RT" && product.Id != "989CG");
-    console.log(products);
     renderListWithTemplate(productCardTemplate, element, products);
 
 }
