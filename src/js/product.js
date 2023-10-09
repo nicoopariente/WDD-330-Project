@@ -21,6 +21,9 @@ document
 
   .addEventListener("click", addToCartHandler);
 
+
 const productId = getParam("product");
 
+
 productDetails.productDetails(productId);
+
