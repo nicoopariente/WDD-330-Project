@@ -37,3 +37,33 @@ export function renderListWithTemplate(templateFn, parentElement, products, posi
   const htmlItems = products?.map((product) => templateFn(product));
   parentElement.insertAdjacentHTML(position, htmlItems);
 }
+
+export async function renderWithTemplate(templateFn, parentElement, data, position = "afterbegin", clear = true){
+  if (clear){
+      parentElement.innerHTML = "";
+  }
+  const htmlItems =  await templateFn(data);
+  parentElement.insertAdjacentHTML(position, htmlItems);
+}
+
+export function loadTemplate(path){
+  return async function () {
+    const res = await fetch(path);
+    if (res.ok) {
+    const html = await res.text();
+    return html;
+    }
+};
+
+}
+
+export function loadHeaderFooter(){
+  const headerTemplateFn = loadTemplate("/partials/header.html");
+  const footerTemplateFn = loadTemplate("/partials/footer.html");
+
+  const headerEl = document.querySelector("#main-header");
+  const footerEl = document.querySelector("#main-footer");
+
+  renderWithTemplate(headerTemplateFn, headerEl);
+  renderWithTemplate(footerTemplateFn, footerEl);
+}
