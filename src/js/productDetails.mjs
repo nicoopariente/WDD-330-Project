@@ -1,6 +1,6 @@
 import { findProductById } from "./productData.mjs";
 
-import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage, updateCartCountHeader } from "./utils.mjs";
 let productData = {};
 
 
@@ -29,7 +29,10 @@ export function addProductToCart(product) {
     return { ...product, Qty: (product?.Qty || 1) + sum };
   })
 
-  setLocalStorage("so-cart", foundItem ? result : (result || []).concat({ ...product, Qty: 1 }));
+  const localStorageResult = foundItem ? result : (result || []).concat({ ...product, Qty: 1 });
+  setLocalStorage("so-cart", localStorageResult);
+  updateCartCountHeader(localStorageResult);
+
 }
 
 export function renderProductDetails(productDetails) {

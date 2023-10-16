@@ -22,7 +22,7 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 
-export function getParam(param){
+export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const product = urlParams.get(param)
@@ -30,40 +30,48 @@ export function getParam(param){
 
 }
 
-export function renderListWithTemplate(templateFn, parentElement, products, position = "afterbegin", clear = true){
-  if (clear){
-      parentElement.innerHTML = "";
+export function renderListWithTemplate(templateFn, parentElement, products, position = "afterbegin", clear = true) {
+  if (clear) {
+    parentElement.innerHTML = "";
   }
   const htmlItems = products?.map((product) => templateFn(product));
   parentElement.insertAdjacentHTML(position, htmlItems);
 }
 
-export async function renderWithTemplate(templateFn, parentElement, data, position = "afterbegin", clear = true){
-  if (clear){
-      parentElement.innerHTML = "";
+export async function renderWithTemplate(templateFn, parentElement, data, position = "afterbegin", clear = true) {
+  if (clear) {
+    parentElement.innerHTML = "";
   }
-  const htmlItems =  await templateFn(data);
+  const htmlItems = await templateFn(data);
   parentElement.insertAdjacentHTML(position, htmlItems);
 }
 
-export function loadTemplate(path){
+export function loadTemplate(path) {
   return async function () {
     const res = await fetch(path);
     if (res.ok) {
-    const html = await res.text();
-    return html;
+      const html = await res.text();
+      return html;
     }
-};
-
+  };
 }
 
-export function loadHeaderFooter(){
-  const headerTemplateFn = loadTemplate("/partials/header.html");
-  const footerTemplateFn = loadTemplate("/partials/footer.html");
+export function updateCartCountHeader() {
+  const cartItems = getLocalStorage("so-cart");
+  const total = cartItems.map(item => item.Qty).reduce((partialSum, a) => partialSum + a, 0);
+
+  const element = document.getElementById('cart-count');
+  element.innerHTML = total;
+}
+
+export async function loadHeaderFooter() {
+  const headerTemplateFn = await loadTemplate("/partials/header.html");
+  const footerTemplateFn = await loadTemplate("/partials/footer.html");
 
   const headerEl = document.querySelector("#main-header");
   const footerEl = document.querySelector("#main-footer");
 
   renderWithTemplate(headerTemplateFn, headerEl);
   renderWithTemplate(footerTemplateFn, footerEl);
+  setTimeout(() => updateCartCountHeader(), 500);
 }
