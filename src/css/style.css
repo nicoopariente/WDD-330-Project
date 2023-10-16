@@ -282,3 +282,8 @@ footer {
 #cart-link {
   text-decoration: none;
 }
+
+
+.image-container {
+  position: relative;
+}
