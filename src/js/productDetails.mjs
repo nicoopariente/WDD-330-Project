@@ -36,6 +36,7 @@ export function addProductToCart(product) {
 }
 
 export function renderProductDetails(productDetails) {
+  console.log(productDetails);
   document.querySelector("product-detail");
   document.querySelector("#productName").innerHTML = productDetails.Brand.Name;
   document.querySelector("#productNameWithoutBrand").innerHTML = productDetails.NameWithoutBrand;
@@ -43,6 +44,7 @@ export function renderProductDetails(productDetails) {
   document.querySelector("#productFinalPrice").innerHTML = productDetails.FinalPrice;
   document.querySelector("#productColorName").innerHTML = productDetails.Colors[0].ColorName;
   document.querySelector("#productDescriptionHtmlSimple").innerHTML = productDetails.DescriptionHtmlSimple;
+  document.querySelector("#discount").innerHTML = ((productDetails.SuggestedRetailPrice - productDetails.FinalPrice).toFixed(2)) + ' OFF';
 
 }
 
