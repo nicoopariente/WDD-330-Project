@@ -40,7 +40,7 @@ export function renderProductDetails(productDetails) {
   document.querySelector("product-detail");
   document.querySelector("#productName").innerHTML = productDetails.Brand.Name;
   document.querySelector("#productNameWithoutBrand").innerHTML = productDetails.NameWithoutBrand;
-  document.querySelector("#productImage").src = productDetails.Image;
+  document.querySelector("#productImage").src = productDetails.Images.PrimaryLarge;
   document.querySelector("#productFinalPrice").innerHTML = productDetails.FinalPrice;
   document.querySelector("#productColorName").innerHTML = productDetails.Colors[0].ColorName;
   document.querySelector("#productDescriptionHtmlSimple").innerHTML = productDetails.DescriptionHtmlSimple;
