@@ -1,11 +1,13 @@
 import { getData } from "./productData.mjs";
-import { renderListWithTemplate } from "./utils.mjs";
+import { getParam, renderListWithTemplate } from "./utils.mjs";
+
+const category = getParam("category");
 
 function productCardTemplate(product) {
     return `<li class="product-card">
-    <a href="product_pages/index.html?product=${product.Id}">
+    <a href="/product_pages/index.html?product=${product.Id}&category=${category}">
     <img
-      src="${product.Image}"
+      src="${product.Images.PrimaryMedium}"
       alt="Image of ${product.Name}"
     />
     <h3 class="card__brand">${product.Brand.Name}</h3>
@@ -15,19 +17,13 @@ function productCardTemplate(product) {
   </li>`
 }   
 
-function renderList(products, selector){
-
-        const htmlItems = products?.map((product) => productCardTemplate(product));
-        selector.insertAdjacentHTML("afterbegin", htmlItems);
-    
-    
-}
-
-export async function productList(selector){
+export async function productList(selector, category = 'tents'){
 
     let element = document.querySelector(selector);
-    let products = await getData();
+    
+    let products = await getData(category);
     products = products.filter((product) => product.Id != "880RT" && product.Id != "989CG");
     renderListWithTemplate(productCardTemplate, element, products);
+    document.querySelector(".title").innerHTML = category;
 
 }

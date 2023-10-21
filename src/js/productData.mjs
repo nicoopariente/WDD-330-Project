@@ -1,3 +1,8 @@
+import { getParam } from "./utils.mjs";
+
+const baseURL = import.meta.env.VITE_SERVER_URL;
+const category = getParam("category");
+
 function convertToJson(res) {
   if (res.ok) {
     return res.json();
@@ -6,13 +11,14 @@ function convertToJson(res) {
   }
 }
 
-export function getData(category = "tents") {
-  return fetch(`../json/${category}.json`)
-    .then(convertToJson)
-    .then((data) => data);
-}
 
+export async function getData(category = "tents") {
+  const response = await fetch(baseURL + `products/search/${category}`);
+    const data = await convertToJson(response);
+    return data.Result;
+}
+  
 export async function findProductById(id) {
-  const products = await getData();
+  const products = await getData(category);
   return products.find((item) => item.Id === id);
 }
