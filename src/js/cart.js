@@ -10,7 +10,7 @@ function renderCartContents() {
   } else {
     document.querySelector("#total").className = "cart-footerhide";
   }
-
+  console.log(cartItems);
   const htmlItems = cartItems?.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems?.length
     ? htmlItems?.join("")
@@ -21,7 +21,8 @@ function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${item.Images.PrimaryMedium
+      }"
       alt="${item.Name}"
     />
   </a>

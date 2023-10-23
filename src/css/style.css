@@ -85,7 +85,7 @@ header {
   margin-top: -1.3em;
 }
 
-.logo--square>div {
+.logo--square > div {
   margin-top: -1.7em;
 }
 
@@ -159,7 +159,6 @@ button {
 .product-grid a:hover {
   text-decoration: underline;
 }
-
 
 /* end home product grid */
 
@@ -317,7 +316,6 @@ footer {
 #cart-link {
   text-decoration: none;
 }
-
 
 .image-container {
   position: relative;
