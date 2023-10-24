@@ -1,57 +1,54 @@
 <!DOCTYPE html>
 
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-  <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sleep Outside | Checkout</title>
 
-  <title>Sleep Outside | Checkout</title>
+    <link rel="stylesheet" href="/css/style.css" />
 
-  <link rel="stylesheet" href="/css/style.css" />
+    <script src="../js/checkout.js" type="module"></script>
+  </head>
 
-  <script src="../js/checkout.js" type="module"></script>
-</head>
+  <body>
+    <header class="divider" id="main-header"></header>
 
-<body>
-  <header class="divider" id="main-header"></header>
+    <main class="divider">
+      <section class="products">
+        <h2>Review & Place your Order</h2>
+        <form id="form">
+          <fieldset>
+            <legend>Shipping</legend>
+            First Name:
+            <input name="firstName" id="firstName" type="text" /> Last Name:
+            <input name="lastName" id="lastName" type="text" /> Street:
+            <input name="street" id="street" type="text" /> City:
+            <input name="city" id="city" type="text" /> State:
+            <input name="state" id="state" type="text" /> Zipcode:
+            <input name="zipcode" id="zipcode" type="text" />
+          </fieldset>
+          <fieldset>
+            <legend>Payment</legend>
+            Card Number:
+            <input name="cardNumber" id="cardNumber" type="text" /> Expiration:
+            <input name="expiration" id="expiration" type="text" /> Security
+            Code: <input name="securityCode" id="securityCode" type="text" />
+          </fieldset>
+          <fieldset>
+            <legend>Order Summary</legend>
+            <p>Subtotal: <label id="subtotal"></label></p>
+            <p>Shipping Estimate: <label id="shipping"></label></p>
+            <p>Tax: <label id="tax"></label></p>
+            <p>Order Total: <label id="total"></label></p>
+          </fieldset>
+          <button type="submit">Checkout</button>
+        </form>
+      </section>
+    </main>
 
-  <main class="divider">
-    <section class="products">
-      <h2>Review & Place your Order</h2>
-      <form  id="form">
-        <fieldset>
-          <legend>Shipping</legend>
-          First Name: <input name='firstName' id="firstName" type='text'>
-          Last Name: <input name='lastName' id="lastName" type='text'>
-          Street: <input name='street' id="street" type='text'>
-          City: <input name='city' id="city" type='text'>
-          State: <input name='state' id="state" type='text'>
-          Zipcode: <input name='zipcode' id="zipcode" type='text'>
-        </fieldset>
-        <fieldset>
-          <legend>Payment</legend>
-          Card Number: <input name='cardNumber' id="cardNumber" type='text'>
-          Expiration: <input name='expiration' id="expiration" type='text'>
-          Security Code: <input name='securityCode' id="securityCode" type='text'>
-        </fieldset>
-        <fieldset>
-          <legend>Order Summary</legend>
-          <p>Subtotal: <label id="subtotal"></label></p>
-          <p>Shipping Estimate: <label id="shipping"></label></p>
-          <p>Tax: <label id="tax"></label></p>
-          <p>Order Total: <label id="total"></label></p>
-        </fieldset>
-        <button type="submit">Checkout</button>
-      </form>
-
-
-
-    </section>
-  </main>
-
-  <footer id="main-footer"></footer>
-</body>
-
+    <footer id="main-footer"></footer>
+  </body>
 </html>
