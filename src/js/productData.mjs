@@ -3,11 +3,12 @@ import { getParam } from "./utils.mjs";
 const baseURL = import.meta.env.VITE_SERVER_URL;
 const category = getParam("category");
 
-function convertToJson(res) {
+export async function convertToJson(res) {
+  const data = await res.json();
   if (res.ok) {
-    return res.json();
+    return data;
   } else {
-    throw new Error("Bad Response");
+    throw { name: "servicesError", message: data };
   }
 }
 
