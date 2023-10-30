@@ -1,5 +1,5 @@
-import { getLocalStorage, loadHeaderFooter } from "./utils.mjs";
-
+import { convertToJson } from "./productData.mjs";
+import { alertMessage, getLocalStorage, loadHeaderFooter, removeAllAlerts, setLocalStorage } from "./utils.mjs";
 loadHeaderFooter();
 
 function getValuesOfForm() {
@@ -26,7 +26,7 @@ function getValuesOfForm() {
   };
 }
 
-document.getElementById("form").addEventListener("submit", onSubmit);
+document.getElementById("form")?.addEventListener("submit", onSubmit);
 
 function onSubmit(event) {
   event.preventDefault();
@@ -62,8 +62,24 @@ function onSubmit(event) {
     tax: numbers.tax,
   };
 
-  makeCheckout(apiCall);
+  submitForm(apiCall);
 }
+
+
+async function submitForm(apiCall) {
+  try {
+    await makeCheckout(apiCall);
+    setLocalStorage("so-cart", []);
+    window.location.replace("/checkout/success.html");
+  } catch (err) {
+    console.log('error', err);
+    removeAllAlerts();
+    for (let message in err.message) {
+      alertMessage(err.message[message]);
+    }
+  }
+}
+
 function total(item) {
   let totalValue = 0;
 
@@ -90,7 +106,7 @@ function loadAndReturnTotalValues() {
   return { savedProducts, subtotal, tax, shipping, total };
 }
 
-function makeCheckout(payload) {
+export async function makeCheckout(payload) {
   const options = {
     method: "POST",
     headers: {
@@ -99,7 +115,10 @@ function makeCheckout(payload) {
     body: JSON.stringify(payload),
   };
 
-  fetch("http://server-nodejs.cit.byui.edu:3000/checkout", options);
+  const response = await fetch("http://server-nodejs.cit.byui.edu:3000/checkout", options);
+  const data = await convertToJson(response);
+  return data.Result;
 }
+
 
 loadAndReturnTotalValues();
