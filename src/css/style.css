@@ -339,3 +339,28 @@ footer {
 .alert > p {
   margin: 0;
 }
+
+/*newsletter style*/
+#email {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  width: 80%;
+  line-height: 2em;
+}
+
+#signupmessage{
+  margin-left: 20%;
+  margin-right: 20%;
+  text-align: center;
+}
+
+.messageThanks {
+  background-color: rgb(150, 243, 150);
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.messageThanks > h3 {
+  margin: 0;
+}
