@@ -4,13 +4,16 @@ import { loadHeaderFooter } from "./utils.mjs";
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   if (cartItems) {
-    let totalCart = total(cartItems);
+    if(cartItems.length > 0){
+      let totalCart = total(cartItems);
     document.querySelector("#total").className = "cart-footershow";
     document.querySelector("#totalPrice").innerHTML = `Total: ${totalCart}`;
+    }else {
+      document.querySelector("#total").className = "cart-footerhide";
+    }
   } else {
     document.querySelector("#total").className = "cart-footerhide";
   }
-  console.log(cartItems);
   const htmlItems = cartItems?.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems?.length
     ? htmlItems?.join("")
@@ -21,7 +24,8 @@ function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Images.PrimaryMedium}"
+      src="${item.Images.PrimaryMedium
+      }"
       alt="${item.Name}"
     />
   </a>

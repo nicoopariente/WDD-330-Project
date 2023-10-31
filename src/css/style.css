@@ -269,6 +269,11 @@ button {
   display: contents;
 }
 
+#success {
+  margin-left: 20% ;
+  margin-right: 20%;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
