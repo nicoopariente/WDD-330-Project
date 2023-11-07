@@ -20,7 +20,7 @@
       <section class="products">
         <h2>Review & Place your Order</h2>
         <form id="form">
-          <fieldset>
+          <fieldset class="shipping">
             <legend>Shipping</legend>
             First Name:
             <input required name="firstName" id="firstName" type="text" /> Last Name:
@@ -30,14 +30,14 @@
             <input required name="state" id="state" type="text" /> Zipcode:
             <input required name="zipcode" id="zipcode" type="text" />
           </fieldset>
-          <fieldset>
+          <fieldset class="payment">
             <legend>Payment</legend>
             Card Number:
             <input required name="cardNumber" id="cardNumber" type="text" /> Expiration:
             <input required name="expiration" id="expiration" type="text" /> Security
             Code: <input name="securityCode" id="securityCode" type="text" />
           </fieldset>
-          <fieldset>
+          <fieldset class="order">
             <legend>Order Summary</legend>
             <p>Subtotal: <label id="subtotal"></label></p>
             <p>Shipping Estimate: <label id="shipping"></label></p>
