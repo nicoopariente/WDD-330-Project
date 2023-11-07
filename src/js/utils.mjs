@@ -96,3 +96,14 @@ export function removeAllAlerts() {
   const alerts = document.querySelectorAll(".alert");
   alerts.forEach((alert) => document.querySelector("main").removeChild(alert));
 }
+
+export function onSubmit(event){
+  event.preventDefault();
+  if (!(document.querySelector(".messageThanks"))){
+    let thanks = document.createElement("div");
+    thanks.classList.add("messageThanks");
+    thanks.innerHTML = "<h3>Thanks for joining the team</h3>";
+    document.querySelector("#news").prepend(thanks);
+  }
+  
+}
