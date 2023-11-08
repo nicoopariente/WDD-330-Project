@@ -274,7 +274,19 @@ button {
   margin-right: 20%;
 }
 /*Styles for the forms in the checkout page*/
-fieldset{
+.shipping{
+  display: grid;
+  justify-content: center;
+  margin-left: 33%;
+  margin-right: 33%;
+}
+.payment{
+  display: grid;
+  justify-content: center;
+  margin-left: 33%;
+  margin-right: 33%; 
+}
+.order{
   display: grid;
   justify-content: center;
   margin-left: 33%;
