@@ -115,7 +115,7 @@ export async function makeCheckout(payload) {
     body: JSON.stringify(payload),
   };
 
-  const response = await fetch("http://server-nodejs.cit.byui.edu:3000/checkout", options);
+  const response = await fetch("https://wdd330-backend.onrender.com/checkout", options);
   const data = await convertToJson(response);
   return data.Result;
 }
