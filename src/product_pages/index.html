@@ -16,13 +16,13 @@
   <body>
     <header class="divider" id="main-header"></header>
 
-    <main class="divider">
+    <main class="divider" id="main">
       <section class="product-detail">
-        <h3 id="productName"></h3>
-        <h2 class="divider" id="productNameWithoutBrand"></h2>
         <div class="image-container">
           <img id="productImage" class="divider" src="" alt="" />
         </div>
+        <div id="information">
+          <h1 id="productName"></h1>
         <p class="product-card__price" id="productFinalPrice"></p>
         <p class="product__rating" id="rating"></p>
         <h2 id="notification"></h2>
@@ -30,6 +30,7 @@
         <div class="product-detail__add">
           <button id="addToCart" data-id="">Add to Cart</button>
         </div>
+      </div>
       </section>
     </main>
 
