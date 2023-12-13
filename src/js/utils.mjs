@@ -38,6 +38,14 @@ export function renderListWithTemplate(templateFn, parentElement, products, posi
   parentElement.insertAdjacentHTML(position, htmlItems);
 }
 
+export function renderListWithTemplateOriginal(templateFn, parentElement, products, arrayPosition =0, position = "afterbegin", clear = true) {
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+  const htmlItems = templateFn(products[arrayPosition]);
+  parentElement.insertAdjacentHTML(position, htmlItems);
+}
+
 export async function renderWithTemplate(templateFn, parentElement, data, position = "afterbegin", clear = true) {
   if (clear) {
     parentElement.innerHTML = "";

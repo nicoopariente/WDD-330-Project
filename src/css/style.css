@@ -23,6 +23,7 @@ body {
   font-family: var(--font-body);
   font-size: var(--font-base);
   color: var(--dark-grey);
+  background-color: #FBF5EF;
 }
 
 img {
@@ -37,7 +38,7 @@ header {
 
 .logo {
   line-height: 60px;
-  width: 245px;
+  width: 500px;
   overflow: hidden;
   display: flex;
   font-size: 30px;
@@ -46,7 +47,7 @@ header {
 }
 
 .logo img {
-  width: 60px;
+  width: 150px;
   height: 60px;
 }
 
@@ -139,10 +140,16 @@ button {
 }
 
 .product-grid > li {
-  width: 150px;
+  width: 400px;
   /* border: 1px solid var(--light-grey); */
   padding: 0.5em;
-  margin: 1em;
+  margin: 0.5em;
+  filter: grayscale(100%);
+}
+
+.product-grid > li:hover {
+  width: 405px;
+  filter: grayscale(0%);
 }
 .product-grid h2 {
   margin: 0;
@@ -292,6 +299,59 @@ button {
   margin-left: 33%;
   margin-right: 33%;
 }
+
+
+
+.switch {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  color: var(--dark-grey);
+  padding-left: 0;
+}
+
+
+.product-list{
+  width: 600px;
+  justify-content: center;
+  text-align: center;
+  /* border: 1px solid var(--light-grey); */
+}
+
+.arrow{
+  width: 20px;
+  /* border: 1px solid var(--light-grey); */
+
+
+}
+
+.arrow > a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+.arrow > a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+.next {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.round {
+  border-radius: 50%;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;

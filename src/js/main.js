@@ -6,6 +6,3 @@ import { loadHeaderFooter, onSubmit } from "./utils.mjs";
 loadHeaderFooter();
 
 
-console.log(document.getElementById("form"));
-
-document.getElementById("form")?.addEventListener("submit", onSubmit);

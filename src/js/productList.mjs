@@ -1,29 +1,47 @@
 import { getData } from "./productData.mjs";
-import { getParam, renderListWithTemplate } from "./utils.mjs";
+import { getParam, renderListWithTemplate, setLocalStorage, getLocalStorage, renderListWithTemplateOriginal } from "./utils.mjs";
 
 const category = getParam("category");
 
-function productCardTemplate(product) {
+export function productCardTemplate(product) {
     return `<li class="product-card">
-    <a href="/product_pages/index.html?product=${product.Id}&category=${category}">
+    <a href="/product_pages/index.html?product=${product.id}&category=${category}">
     <img
-      src="${product.Images.PrimaryMedium}"
-      alt="Image of ${product.Name}"
+      src="${product.image}"
+      alt="Image of ${product.title}"
     />
-    <h3 class="card__brand">${product.Brand.Name}</h3>
-    <h2 class="card__name">${product.NameWithoutBrand}</h2>
-    <p class="product-card__discount">$${(product.SuggestedRetailPrice - product.FinalPrice).toFixed(2)} OFF</p></a>
-    <p class="product-card__price">$${product.FinalPrice}</p></a>
+    <h2 class="card__name">${product.title}</h2>
+    <p class="product-card__price">$${product.price}</p></a>
   </li>`
 }   
 
-export async function productList(selector, category = 'tents'){
 
-    let element = document.querySelector(selector);
-    
-    let products = await getData(category);
-    products = products.filter((product) => product.Id != "880RT" && product.Id != "989CG");
-    renderListWithTemplate(productCardTemplate, element, products);
-    document.querySelector(".title").innerHTML = category;
+export async function productListOriginal(selector, category = 'electronics'){
+
+  let element = document.querySelector(selector);
+  
+  await setLocalStorageByCategory(category);
+
+  const products = getLocalStorage(category);
+  
+
+
+
+  renderListWithTemplateOriginal(productCardTemplate, element, products);
+  document.querySelector(".title").innerHTML = category;
 
 }
+
+export async function setLocalStorageByCategory(category = 'electronics'){
+  
+  if (localStorage.getItem(category) == null){
+    let products = await getData(category);
+    console.log(products);
+    setLocalStorage(category, products);
+  }
+  
+
+  
+}
+
+

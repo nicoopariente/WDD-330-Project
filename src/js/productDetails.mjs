@@ -38,13 +38,14 @@ export function addProductToCart(product) {
 export function renderProductDetails(productDetails) {
   console.log(productDetails);
   document.querySelector("product-detail");
-  document.querySelector("#productName").innerHTML = productDetails.Brand.Name;
-  document.querySelector("#productNameWithoutBrand").innerHTML = productDetails.NameWithoutBrand;
-  document.querySelector("#productImage").src = productDetails.Images.PrimaryLarge;
-  document.querySelector("#productFinalPrice").innerHTML = productDetails.FinalPrice;
-  document.querySelector("#productColorName").innerHTML = productDetails.Colors[0].ColorName;
-  document.querySelector("#productDescriptionHtmlSimple").innerHTML = productDetails.DescriptionHtmlSimple;
-  document.querySelector("#discount").innerHTML = ((productDetails.SuggestedRetailPrice - productDetails.FinalPrice).toFixed(2)) + ' OFF';
+  document.querySelector("#productName").innerHTML = productDetails.title;
+  document.querySelector("#productImage").src = productDetails.image;
+  document.querySelector("#productFinalPrice").innerHTML = productDetails.price;
+  document.querySelector("#rating").innerHTML = `Rate for this product: ${productDetails.rating.rate} out of ${productDetails.rating.count} reviews`;
+  document.querySelector("#productDescriptionHtmlSimple").innerHTML = productDetails.description;
+  if(productDetails.rating.rate > 4){
+    document.querySelector("#notification").innerHTML = "This product has a very good Rating!!!";
+  }
 
 }
 
