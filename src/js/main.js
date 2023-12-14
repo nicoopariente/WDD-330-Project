@@ -1,8 +1,6 @@
 //import { productList } from "./productList.mjs";
-import { loadHeaderFooter, onSubmit } from "./utils.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
 
 //productList(".product-list");
 
 loadHeaderFooter();
-
-

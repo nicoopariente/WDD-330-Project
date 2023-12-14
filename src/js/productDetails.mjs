@@ -51,7 +51,7 @@ export function renderProductDetails(productDetails) {
 
 export function wrongProductIdMessage(){
   let h3 = document.createElement("h3");
-    h3.innerHTML = "Ups! Its seems that the Product is not correct. Please check the Id.";
+    h3.innerHTML = "Oops! Its seems that the Product is not correct. Please check the Id.";
     let parentElement = document.querySelector(".product-detail");
     parentElement.innerHTML = "";
     parentElement.append(h3);

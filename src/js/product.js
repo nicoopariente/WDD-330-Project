@@ -27,5 +27,4 @@ const productId = getParam("product");
 
 productDetails.productDetails(productId);
 
-
 loadHeaderFooter();

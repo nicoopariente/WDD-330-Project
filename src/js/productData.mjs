@@ -28,7 +28,7 @@ export async function getData(category2 = "electronics") {
       "Content-Type": "application/json",
     }
   };
-  const response = await fetch("https://fakestoreapi.com/" + `products/category/${category2}`, options);
+  const response = await fetch(baseURL + `products/category/${category2}`, options);
     const data = await convertToJson(response);
     console.log(data);
     return data;

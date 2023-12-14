@@ -4,11 +4,13 @@ import { loadHeaderFooter, onSubmit } from "./utils.mjs";
 function renderCartContents() {
   const cartItems = getLocalStorage("cart");
   if (cartItems) {
-    if(cartItems.length > 0){
+    if (cartItems.length > 0) {
       let totalCart = total(cartItems);
-    document.querySelector("#total").className = "cart-footershow";
-    document.querySelector("#totalPrice").innerHTML = `Total: ${totalCart}. After clicking in Checkout, we will continue the buying process directly by email`;
-    }else {
+      document.querySelector("#total").className = "cart-footershow";
+      document.querySelector(
+        "#totalPrice"
+      ).innerHTML = `Total: ${totalCart}. After clicking in Checkout, we will continue the buying process directly by email`;
+    } else {
       document.querySelector("#total").className = "cart-footerhide";
     }
   } else {
@@ -24,8 +26,7 @@ function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.image
-      }"
+      src="${item.image}"
       alt="${item.title}"
     />
   </a>
@@ -52,44 +53,32 @@ function total(item) {
 renderCartContents();
 loadHeaderFooter();
 
-
-console.log(document.getElementById("form"));
-
 document.getElementById("form")?.addEventListener("submit", onSubmit);
 
 document.getElementById("Delete")?.addEventListener("click", DeleteFunction);
-[...document.querySelectorAll('.Delete')].forEach(function(item) {
-  item.addEventListener('click', DeleteFunction);
-   });
+[...document.querySelectorAll(".Delete")].forEach(function (item) {
+  item.addEventListener("click", DeleteFunction);
+});
 
-function DeleteFunction(event){
+function DeleteFunction(event) {
   event.preventDefault();
 
-  let products = getLocalStorage("cart")
+  let products = getLocalStorage("cart");
 
-
-  
   let productPosition = products.findIndex((item) => item.id == this.id);
-  console.log(productPosition);
-  console.log(products);
 
-  if(products[productPosition].Qty == 1){
-    products.splice(productPosition, 1)
+  if (products[productPosition].Qty == 1) {
+    products.splice(productPosition, 1);
     setLocalStorage("cart", products);
-    console.log("hi");
-
-  }else{
-    console.log(products[productPosition]);
-  products[productPosition].Qty =  products[productPosition].Qty - 1;
-  setLocalStorage("cart", products);
+  } else {
+    products[productPosition].Qty = products[productPosition].Qty - 1;
+    setLocalStorage("cart", products);
   }
-  
-  
+
   renderCartContents();
 
   document.getElementById("Delete")?.addEventListener("click", DeleteFunction);
-[...document.querySelectorAll('.Delete')].forEach(function(item) {
-  item.addEventListener('click', DeleteFunction);
-   });
-
+  [...document.querySelectorAll(".Delete")].forEach(function (item) {
+    item.addEventListener("click", DeleteFunction);
+  });
 }
