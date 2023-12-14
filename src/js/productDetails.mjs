@@ -19,18 +19,18 @@ export async function productDetails(productId, selector) {
 }
 
 export function addProductToCart(product) {
-  const savedProducts = getLocalStorage("so-cart");
+  const savedProducts = getLocalStorage("cart");
 
-  const foundItem = (savedProducts || [])?.find((item) => item.Id === product.Id);
+  const foundItem = (savedProducts || [])?.find((item) => item.id == product.id);
   let result = savedProducts?.map(product => {
 
-    const sum = foundItem?.Id === product.Id ? 1 : 0;
+    const sum = foundItem?.id == product.id ? 1 : 0;
     
     return { ...product, Qty: (product?.Qty || 1) + sum };
   })
 
   const localStorageResult = foundItem ? result : (result || []).concat({ ...product, Qty: 1 });
-  setLocalStorage("so-cart", localStorageResult);
+  setLocalStorage("cart", localStorageResult);
   updateCartCountHeader(localStorageResult);
 
 }

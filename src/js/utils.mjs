@@ -65,7 +65,7 @@ export function loadTemplate(path) {
 }
 
 export function updateCartCountHeader() {
-  const cartItems = getLocalStorage("so-cart");
+  const cartItems = getLocalStorage("cart");
   const total = cartItems.map(item => item.Qty).reduce((partialSum, a) => partialSum + a, 0);
 
   const element = document.getElementById('cart-count');
@@ -107,11 +107,21 @@ export function removeAllAlerts() {
 
 export function onSubmit(event){
   event.preventDefault();
-  if (!(document.querySelector(".messageThanks"))){
-    let thanks = document.createElement("div");
-    thanks.classList.add("messageThanks");
-    thanks.innerHTML = "<h3>Thanks for joining the team</h3>";
-    document.querySelector("#news").prepend(thanks);
+  const savedProducts = getLocalStorage("cart");
+  if(savedProducts != null){
+    const length = savedProducts.length;
   }
+  if((savedProducts != 0) && (savedProducts != null)){
+    setLocalStorage("cart", []);
+    window.location.replace("/checkout/success.html");
+  }else{
+    if (!(document.querySelector(".messageEmpty"))){
+      let empty = document.createElement("div");
+      empty.classList.add("messageEmpty");
+      empty.innerHTML = "<h3>The Car is empty, try adding something to the cart first</h3>";
+      document.querySelector("#news").prepend(empty);
+    }
+  }
+  
   
 }

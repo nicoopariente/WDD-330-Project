@@ -16,11 +16,11 @@
   <body>
     <header class="divider" id="main-header"></header>
 
-    <main class="divider">
+    <main class="divider" id="maincart">
       <section class="products">
         <h2>My Cart</h2>
 
-        <ul class="product-list">
+        <ul class="product-list" id="cart-items">
           <!-- <li class="cart-card divider">
             <a href="product_pages/marmot-ajax-3.html" class="cart-card__image">
               <img
@@ -54,12 +54,22 @@
         </ul>
       </section>
 
+
+
       <div class="cart-footerhide" id="total">
         <p class="cart-total" id="totalPrice">Total:</p>
       </div>
-      <div>
-        <a href="../checkout/index.html"><button>Checkout</button></a>
-      </div>
+      <section class="products">
+        
+        <form id="form" >
+          <fieldset id="news">
+            <h2 id="signupmessage">Click check out to send the Buying Request to our team</h2>
+            Email:
+            <input required name="email" id="email" type="email" /> 
+            <button type="submit">CheckOut</button>
+          </fieldset>
+        </form>
+      </section>
     </main>
 
     <footer id="main-footer"></footer>
